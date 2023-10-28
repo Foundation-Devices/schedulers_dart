@@ -55,7 +55,7 @@ class RateScheduler implements PriorityScheduler {
   bool _breakLoopNow = false;
 
   Future<void> _loopAsync() async {
-    // предотвращаем параллельную работу нескольких _loop
+    // prevent parallel operation of several _loops
     if (this._isLooping) {
       return;
     }
@@ -70,7 +70,7 @@ class RateScheduler implements PriorityScheduler {
         }
 
         if (this._recentTimes.length >= n) {
-          // we will wail the oldest task to become "too old"
+          // we will wait for the oldest task to become "too old"
           final delay = this.per - this._recentTimes.first.elapsed;
           if (delay > const Duration(seconds: 0)) {
             await Future<void>.delayed(delay);

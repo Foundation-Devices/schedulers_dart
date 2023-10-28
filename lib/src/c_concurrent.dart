@@ -33,12 +33,12 @@ class ParallelScheduler implements PriorityScheduler {
   @internal
   int get currentlyRunning => _currentlyRunning;
 
-  /// Это синхронная функция, которая запускает задачи асинхронно рекурсивно.
-  /// После выполнения каждая задача снова вызывает [_maybeRunTasks].
+  /// This is a synchronous function that runs tasks recursively.
+  /// After execution, each task calls [_maybeRunTasks] again.
   ///
-  /// Количество вложенных вызовов может почти достигать длины длины очереди.
-  /// Тест с миллионом запускаемых задач показал, что это не приводит к
-  /// проблемам вроде переполнения стека.
+  /// The number of nested calls can almost reach the length of the queue length.
+  /// A test with a million running tasks showed that this does not lead to
+  /// problems like stack overflow.
   void _maybeRunTasks() {
     assert(_currentlyRunning <= max);
 
