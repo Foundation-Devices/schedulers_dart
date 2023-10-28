@@ -150,7 +150,7 @@ class PriorityTask<R> extends InternalTask<R>
   final id = (PriorityTask._idGenerator = PriorityTask._idGenerator.next());
 
   @override
-  int compareTo(final PriorityTask<R> other) {
+  int compareTo(final PriorityTask<dynamic> other) {
     // taskA<taskB if taskA has larger priority
     var x = -this.priority.compareTo(other.priority);
 
